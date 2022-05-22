@@ -1,6 +1,10 @@
-import express from 'express';
+const express = require('express');
+const { createPosts, getPosts, getPost, editPost, deletePost } = require('../controllers/posts.controller');
+
 const router = express.Router();
-router.get('/', (req, res)=>{
-    res.send('this works')
-})
-export default router;
+
+router.route('/posts').get(getPosts).post(createPosts);
+
+router.route("/posts/:postId").get(getPost).post(editPost).delete(deletePost)
+
+module.exports = router;
