@@ -25,6 +25,6 @@ exports.getUser = async (req, res) => {
     }
 }
 
-exports.updateUserDetails =async(req, res)=>{
+exports.updateUserDetails = async (req, res) => {
 
 }

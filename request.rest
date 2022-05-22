@@ -1,12 +1,13 @@
-# GET http̥s://localhost:3000/users HTTP/1.1
 
 
-POST http̥s://localhost:4000/auth/signup 
-Content-Type: application/json
+###
 
-{
-    "email": "bhtibrewal@gmail.com",
-    "password": "bhtib@1999",
-    "name": "bhavika",
-    "username": "bhtib"
-}
+# POST http̥s://localhost:4000/auth/signup 
+# Content-Type: application/json
+
+# {
+#     "email": "bhtibrewal@gmail.com",
+#     "password": "bhtib@1999",
+#     "name": "bhavika",
+#     "username": "bhtib"
+# }
