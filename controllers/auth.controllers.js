@@ -1,16 +1,17 @@
 const cookieToken = require("../utils/cookieToken");
 
 exports.signUp = async (req, res) => {
+    let user;
     const { email, password, name, username } = req.body;
     if (!email || !password || !name || !username)
         res.status(400).json({ error: "Please fill the details" });
 
     try {
-        const user = User.create({ email, password, name, username }, (err, newUser) => {
-            if (err) return res.status(400).json({ message: "couldn't create user" })
-        })
+        user = await User.create({ email, password, name, username })
+        console.log(email);
         const { token, options } = cookieToken(user);
         console.log(user, token);
+
         res
             .status(201)
             .cookie("token", token, options)
@@ -22,7 +23,7 @@ exports.signUp = async (req, res) => {
 }
 
 exports.login = async (req, res) => {
-    const {username , password } = req.body;
+    const { username, password } = req.body;
     if (!username || !password) {
         return res
             .status(400)
