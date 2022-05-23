@@ -23,7 +23,7 @@ const postsRouter = require('./routes/posts.routes');
 const userRouter = require('./routes/user.routes');
 const commentsRouter = require('./routes/comments.routes');
 
-// routes 
+
 // app.use('/api', authRouter);
 app.use('/api', postsRouter);
 app.use('/api', userRouter);
