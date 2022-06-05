@@ -24,7 +24,7 @@ const userRouter = require('./routes/user.routes');
 const commentsRouter = require('./routes/comments.routes');
 
 
-// app.use('/api', authRouter);
+app.use('/api', authRouter);
 app.use('/api', postsRouter);
 app.use('/api', userRouter);
 // app.use('/', commentsRouter);

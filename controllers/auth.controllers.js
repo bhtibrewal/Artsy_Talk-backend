@@ -1,16 +1,17 @@
 const cookieToken = require("../utils/cookieToken");
+const User = require("../models/user.model")
 
 exports.signUp = async (req, res) => {
     let user;
     const { email, password, name, username } = req.body;
+
     if (!email || !password || !name || !username)
         res.status(400).json({ error: "Please fill the details" });
 
     try {
-        user = await User.create({ email, password, name, username })
-        console.log(email);
+        user = await User.create({ email, password, name, username });
+
         const { token, options } = cookieToken(user);
-        console.log(user, token);
 
         res
             .status(201)
@@ -27,7 +28,7 @@ exports.login = async (req, res) => {
     if (!username || !password) {
         return res
             .status(400)
-            .json({ success: false, errror: "Username and password are requied" });
+            .json({ success: false, error: "Username and password are requied" });
     }
 
     try {
@@ -41,7 +42,8 @@ exports.login = async (req, res) => {
                 message: "You are not registerd, create a new account",
             });
 
-        const isPasswordValid = await User.isPasswordValid(password);
+        const isPasswordValid = await user.checkPasswordValid(password);
+        console.log(isPasswordValid);
         if (!isPasswordValid)
             return res
                 .status(401)
@@ -49,7 +51,7 @@ exports.login = async (req, res) => {
 
         //generate token
         const { token, options } = cookieToken(user);
-        delete user.password;
+        user.password = undefined;
 
         res
             .status(200)

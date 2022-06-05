@@ -8,6 +8,7 @@ const userSchema = Schema({
     username: {
         type: String,
         trim: true,
+        unique: true,
         required: [true, 'Please provide a username']
     },
     name: {
@@ -18,11 +19,11 @@ const userSchema = Schema({
     email: {
         type: String,
         trim: true,
-        unique: 'Email already exists',
-        match: [validator.isEmail, 'Please fill a valid email address'],
+        unique: true,
+        // match: [validator.isEmail, 'Please fill a valid email address'],
         required: [true, 'Email is required']
     },
-    hashed_password: {
+    password: {
         type: String,
         required: [true, "Password is required"]
     },
@@ -49,8 +50,9 @@ userSchema.methods = {
     generateAccessToken: function (userId) {
         return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRY });
     },
-    isPasswordValid: async function (password) {
-        return await bcrypt.compare(password, this.password);
+    checkPasswordValid: async function (password) {
+        console.log(password, this.password);
+        return password=== this.password;
     }
 }
 const token = crypto.randomBytes(64).toString('hex');
