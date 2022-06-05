@@ -27,7 +27,7 @@ const commentsRouter = require('./routes/comments.routes');
 app.use('/api', authRouter);
 app.use('/api', postsRouter);
 app.use('/api', userRouter);
-// app.use('/', commentsRouter);
+app.use('/api', commentsRouter);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log('server running at '+PORT));

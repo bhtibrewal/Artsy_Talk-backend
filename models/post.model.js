@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const postSchema = Schema({
-    title: { type: String, required: 'title is required', maxLength: 100 },
+    title: { type: String, maxLength: 100 },
     content: { type: String, required: 'content is required', maxLength: 600 },
     image: {
         secure_url: {
@@ -14,9 +14,7 @@ const postSchema = Schema({
         created: { type: Date, default: Date.now },
         postedBy: { type: Schema.ObjectId, ref: 'User' }
     }],
-    likes: {
-        likCount: { type: Number, default: 0 }
-    },
+    likes: [],
     postedBy: { type: Schema.ObjectId, ref: 'User' },
     createdAt: { type: Date, default: new Date() }
 })
