@@ -37,6 +37,8 @@ content-type: application/json
 
 ###
 DELETE http://localhost:4000/api/posts/629baed335558de24ef63e8e
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTQ0NTIzOTUsImV4cCI6MTY1NTA1NzE5NX0.JNsGvIRxjUh7Vtq_BEoGeG_Y31wOE6d6nrviRj-mV4w
+
 
 ###
 GET http://localhost:4000/api/posts/629baed335558de24ef63e8e

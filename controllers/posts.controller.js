@@ -1,3 +1,4 @@
+const cloudinary = require("cloudinary");
 const Post = require('../models/post.model');
 
 /* 
@@ -6,15 +7,15 @@ const Post = require('../models/post.model');
 */
 exports.getPosts = async (req, res) => {
     try {
-        const posts = await Post.find().sort({ createdAt: -1 });
+        const posts = await Post.find()
+            .populate("user", "name photo location")
+            .sort({ createdAt: -1 });
 
-        // if no videos found return 404
         if (!posts && posts.length === 0)
             return res
                 .status(404)
                 .send({ success: false, message: "No posts found" });
 
-        // return all videos
         res.status(200).send({ success: true, posts });
     }
     catch (error) {
@@ -60,7 +61,7 @@ exports.createPosts = async (req, res) => {
         const post = await Post.create({
             postedBy: req.userId,
             content,
-        });
+        }).populate("user", "name photo location");;
         res.status(201).send({ success: true, post });
     }
     catch (error) {
@@ -81,7 +82,9 @@ exports.editPost = async (req, res) => {
         const postObj = {
             content
         };
-        const post = await Post.findByIdAndUpdate({ _id: postId }, postObj, { new: true });
+        const post = await Post
+            .findByIdAndUpdate({ _id: postId }, postObj, { new: true })
+            .populate("user", "name photo location");
         res.status(201).send({ success: true, post });
     }
     catch (error) {
@@ -104,3 +107,25 @@ exports.deletePost = async (req, res) => {
         res.status(500).send({ success: false, message: error.message });
     }
 }
+
+exports.getPostsByUser = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const posts = await Post.find(
+            { user: userId },
+            {},
+            { lean: true }
+        ).populate({
+            path: "user",
+            select: "name photo",
+        });
+        if (!posts || posts.length === 0)
+            return res
+                .status(404)
+                .send({ success: false, message: "No posts found for this user" });
+
+        res.status(200).send({ success: true, posts });
+    } catch (error) {
+        res.status(500).send({ success: false, message: error.message });
+    }
+};
