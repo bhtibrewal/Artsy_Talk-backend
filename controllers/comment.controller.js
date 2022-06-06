@@ -1,4 +1,5 @@
 const Post = require("../models/post.model");
+const Comment = require("../models/comment.model");
 
 exports.postComment = async (req, res) => {
     const { postId, parentId, body } = req.body;
