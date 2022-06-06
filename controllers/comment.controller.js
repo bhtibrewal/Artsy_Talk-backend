@@ -1,4 +1,4 @@
-
+const Post = require("../models/post.model");
 
 exports.postComment = async (req, res) => {
     const { postId, parentId, body } = req.body;
