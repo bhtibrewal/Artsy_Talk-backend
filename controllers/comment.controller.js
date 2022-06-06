@@ -3,20 +3,19 @@
 exports.postComment = async (req, res) => {
     const { postId, parentId, body } = req.body;
     try {
-        const post = await Post.findOne({ _id: postId });
         if (parentId) {
             const comment = await Comment.findOne({ _id: parentId });
             const reply = new Comment({
                 body,
                 user: userId,
-                parentComment: parentId,
-                level: 2,
+                parentId: parentId,
             });
             await reply.save();
             comment.replies.push(reply._id);
             await comment.save();
-            res.status(201).send({ success: true, post });
+            res.status(201).send({ success: true, comment });
         } else {
+            const post = await Post.findOne({ _id: postId });
             const comment = new Comment({
                 body,
                 user: userId,
@@ -26,7 +25,7 @@ exports.postComment = async (req, res) => {
             post.comments.push(comment._id);
             await post.save();
 
-            res.status(201).send({ success: true, post });
+            res.status(201).send({ success: true, comment });
         }
 
     }
@@ -36,7 +35,9 @@ exports.postComment = async (req, res) => {
 }
 
 exports.deleteComment = async (req, res) => {
+    const { commentId, postId, parentCommentId } = req.body;
     try {
+
 
     }
     catch (error) {
