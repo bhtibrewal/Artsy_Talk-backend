@@ -1,8 +1,6 @@
-GET http://localhost:4000/api/posts
 
-###
+### get users
 GET http://localhost:4000/api/users
-
 
 ###
 POST http://localhost:4000/api/auth/signup
@@ -24,21 +22,49 @@ content-type: application/json
     "username": "bhtib"
 }
 
-###
+### get user
 GET http://localhost:4000/api/users/629b958210857a7381bca03a
 
-###
+### create post
 POST http://localhost:4000/api/posts
 content-type: application/json
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTQ1MTE0MTIsImV4cCI6MTY1NTExNjIxMn0.l7nzuP6l2JDbg0a75qS37YYk5-2HPuxSWnVuqEFvk7Y
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
 
 {
     "content": "new content"
 }
 
-###
-DELETE http://localhost:4000/api/posts/629baed335558de24ef63e8e
+### get posts
+GET http://localhost:4000/api/posts
+authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NzEyMjIsImV4cCI6MTY1NTU3NjAyMn0.JRugDcYe4yHAyQwpqKGXnf1lfgJUTa-WLKx8UD7BBVw
 
+### delete post
+DELETE http://localhost:4000/api/posts/629cb4fb94470f9941ff5f5c
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
+
+### getpost
+GET http://localhost:4000/api/posts/62a4de237a849a98e62d22b4
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
+
+### edit post
+PUT  http://localhost:4000/api/posts/62a4f01c224e9fb940ad8901
+content-type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
+
+{
+    "content": "updated content"
+}
+
+### like post
+POST  http://localhost:4000/api/posts/likes/62a4f01c224e9fb940ad8901
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
 
 ###
-GET http://localhost:4000/api/posts/629baed335558de24ef63e8e
+POST  http://localhost:4000/api/comments
+content-type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
+
+{ 
+    "postId":"629cb51694470f9941ff5f5e",
+    "body":  "this is comment"
+}

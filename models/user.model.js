@@ -51,8 +51,7 @@ userSchema.methods = {
         return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRY });
     },
     checkPasswordValid: async function (password) {
-        console.log(password, this.password);
-        return password=== this.password;
+        return password === this.password;
     }
 }
 const token = crypto.randomBytes(64).toString('hex');

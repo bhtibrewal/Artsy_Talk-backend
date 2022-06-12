@@ -6,6 +6,7 @@ const Post = require('../models/post.model');
 * GET request at /posts
 */
 exports.getPosts = async (req, res) => {
+
     try {
         const posts = await Post.find()
             .populate("user", "name photo location")
@@ -25,12 +26,12 @@ exports.getPosts = async (req, res) => {
 
 /* 
 * this functions returns all the posts 
-* GET request at /posts
+* GET request at /posts/:postId
 */
 exports.getPost = async (req, res) => {
     const { postId } = req.params;
     try {
-        const post = await Post.findById(postId, {}, { lean: true }).populate(
+        const post = await Post.findById({ _id: postId }, {}, { lean: true }).populate(
             "user",
             "name photo"
         );
@@ -57,11 +58,12 @@ exports.createPosts = async (req, res) => {
             .send({ success: false, message: "Please write something" });
     try {
         let imageResponse = {};
-        console.log(req)
         const post = await Post.create({
-            postedBy: req.userId,
+            user: req.userId,
             content,
-        }).populate("user", "name photo location");;
+        });
+
+
         res.status(201).send({ success: true, post });
     }
     catch (error) {
@@ -69,8 +71,12 @@ exports.createPosts = async (req, res) => {
     }
 }
 
-
+/* 
+* this functions edits an existing post
+* PUT request at /posts/:postId
+*/
 exports.editPost = async (req, res) => {
+
     const { postId } = req.params;
     const { title, content, } = req.body;
     if (!content)
@@ -92,6 +98,10 @@ exports.editPost = async (req, res) => {
     }
 }
 
+/* 
+* this functions deletes a post
+* DELETE request at /posts/:postId
+*/
 exports.deletePost = async (req, res) => {
     const { postId } = req.params;
     try {
@@ -99,7 +109,7 @@ exports.deletePost = async (req, res) => {
         if (!post)
             return res
                 .status(404)
-                .send({ success: false, message: "No posts found for this user id" });
+                .send({ success: false, message: "No posts found for this post id" });
 
         res.status(200).send({ success: true, post });
     }
@@ -108,6 +118,10 @@ exports.deletePost = async (req, res) => {
     }
 }
 
+/* 
+* this functions gets post by user
+*GET request at /posts/:userId
+*/
 exports.getPostsByUser = async (req, res) => {
     const { userId } = req.params;
     try {

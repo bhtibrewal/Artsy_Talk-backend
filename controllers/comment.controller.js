@@ -8,7 +8,7 @@ exports.postComment = async (req, res) => {
             const comment = await Comment.findOne({ _id: parentId });
             const reply = new Comment({
                 body,
-                user: userId,
+                user: req.userId,
                 parentId: parentId,
             });
             await reply.save();
@@ -16,11 +16,11 @@ exports.postComment = async (req, res) => {
             await comment.save();
             res.status(201).send({ success: true, comment });
         } else {
-            const post = await Post.findOne({ _id: postId });
+            const post = await Post.find({ _id: postId });
+            console.log(post)
             const comment = new Comment({
                 body,
-                user: userId,
-                level: 1,
+                user: req.userId,
             });
             await comment.save();
             post.comments.push(comment._id);

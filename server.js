@@ -22,11 +22,12 @@ const authRouter = require('./routes/auth.routes');
 const postsRouter = require('./routes/posts.routes');
 const userRouter = require('./routes/user.routes');
 const commentsRouter = require('./routes/comments.routes');
-
+const likeRouter = require('./routes/likes.routes')
 
 app.use('/api', authRouter);
-app.use('/api', postsRouter);
 app.use('/api', userRouter);
+app.use('/api', postsRouter);
+app.use('/api', likeRouter);
 app.use('/api', commentsRouter);
 
 const PORT = process.env.PORT || 4000;

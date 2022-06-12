@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const commentSchema = Schema({
     user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "User",
         required: [true, "User id is require for adding like"],
     },

@@ -43,7 +43,7 @@ exports.login = async (req, res) => {
             });
 
         const isPasswordValid = await user.checkPasswordValid(password);
-        console.log(isPasswordValid);
+
         if (!isPasswordValid)
             return res
                 .status(401)

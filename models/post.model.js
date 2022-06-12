@@ -11,10 +11,7 @@ const postSchema = Schema({
         },
     ],
     likes: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }
+        Schema.Types.ObjectId,
     ],
     bookmarks: [
         {
@@ -30,7 +27,7 @@ const postSchema = Schema({
     viewCount: {
         type: Number,
         default: 0,
-      },
+    },
 }, { timestamps: true })
 
 const Post = model("Post", postSchema);
