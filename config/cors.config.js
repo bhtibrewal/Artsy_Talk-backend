@@ -1,6 +1,6 @@
 const corsConFig = {
     origin: [
-        "https://localhost:4000", "https://artsytalk-api.herokuapp.com/"
+        "http://localhost:3000", "https://artsysocial.netlify.app/"
     ],
     credentials: true,
 };
