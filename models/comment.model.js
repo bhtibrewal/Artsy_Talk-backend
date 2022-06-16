@@ -16,10 +16,7 @@ const commentSchema = Schema({
             ref: "Comment",
         },
     ],
-    parentId: {
-        type: String,
-        default: null,
-    },
+
 })
 
 module.exports = model("Comment", commentSchema);

@@ -4,9 +4,7 @@ const authenticateToken = require('../middleware/authenticateToken');
 const router = express.Router();
 
 router.route('/comments')
-.post(authenticateToken, postComment);
-
-router.route("/comments/:commentId")
+.post(authenticateToken, postComment)
 .delete(authenticateToken, deleteComment);
 
 module.exports = router;

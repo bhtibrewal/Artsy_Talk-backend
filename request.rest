@@ -43,7 +43,7 @@ DELETE http://localhost:4000/api/posts/629cb4fb94470f9941ff5f5c
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
 
 ### getpost
-GET http://localhost:4000/api/posts/62a4de237a849a98e62d22b4
+GET http://localhost:4000/api/posts/629cb51694470f9941ff5f5e
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
 
 ### edit post
@@ -67,4 +67,26 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliO
 { 
     "postId":"629cb51694470f9941ff5f5e",
     "body":  "this is comment"
+}
+
+###
+POST http://localhost:4000/api/comments
+content-type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
+
+{
+    "postId":"629cb51694470f9941ff5f5e",
+    "body":  "this is reply",
+    "parentId": "62a5e6b6198ec939c0791100"
+}
+
+###
+DELETE  http://localhost:4000/api/comments
+content-type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
+
+{ 
+    "postId": "629cb51694470f9941ff5f5e",
+    "parentCommentId": "62a5e6b6198ec939c0791100",
+    "commentId": "62a5ea0e22e47f020e06d61f"
 }
