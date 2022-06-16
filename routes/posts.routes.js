@@ -5,7 +5,7 @@ const authenticateToken = require('../middleware/authenticateToken');
 const router = express.Router();
 
 router.route('/posts')
-    .get(authenticateToken, getPosts)
+    .get( getPosts)
     .post(authenticateToken, createPosts);
 
 router.route('/posts/:postId')

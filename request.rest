@@ -36,7 +36,7 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliO
 
 ### get posts
 GET http://localhost:4000/api/posts
-authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NzEyMjIsImV4cCI6MTY1NTU3NjAyMn0.JRugDcYe4yHAyQwpqKGXnf1lfgJUTa-WLKx8UD7BBVw
+# authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NzEyMjIsImV4cCI6MTY1NTU3NjAyMn0.JRugDcYe4yHAyQwpqKGXnf1lfgJUTa-WLKx8UD7BBVw
 
 ### delete post
 DELETE http://localhost:4000/api/posts/629cb4fb94470f9941ff5f5c
