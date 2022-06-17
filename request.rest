@@ -23,7 +23,7 @@ content-type: application/json
 }
 
 ### get user
-GET http://localhost:4000/api/users/629b958210857a7381bca03a
+GET http://localhost:4000/api/users/guest_123
 
 ### create post
 POST http://localhost:4000/api/posts
