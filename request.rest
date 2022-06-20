@@ -1,4 +1,3 @@
-
 ### get users
 GET http://localhost:4000/api/users
 
@@ -7,23 +6,41 @@ POST http://localhost:4000/api/auth/signup
 content-type: application/json
 
 {
-    "email": "guest@gmail.com",
-    "password": "guest@1234",
-    "name": "Guest User",
-    "username": "guest_123"
+    "email": "tanay@gmail.com",
+    "password": "tanay@1234",
+    "name": "Tanay Pratap",
+    "username": "tanay_123"
 }
 
-###
+### login
 POST http://localhost:4000/api/auth/login
 content-type: application/json
 
 {
-    "password": "bhtib@1999",
-    "username": "bhtib"
+    "password": "guest@1234",
+    "username": "guest_123"
 }
-
+### tanay_123
 ### get user
 GET http://localhost:4000/api/users/guest_123
+
+### update user details
+PUT http://localhost:4000/api/users/guest_123
+content-type: application/json
+
+{
+    "website": "artsyshop.netlify.app",
+    "bio": "Hi, I am Guest User!!"
+}
+
+### follow user
+POST http://localhost:4000/api/user/follow 
+content-type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliYmNkMmZhMzBlNGM3MTI1MzNkZGIiLCJpYXQiOjE2NTU1NTE0OTcsImV4cCI6MTY1NjE1NjI5N30.qQ4Wc73xTolRlp7tBbJKUwHGwpGGcjo93PuuUkDI304
+
+{
+    "followeeId": "62adb58a259012f746c6b089"
+}
 
 ### create post
 POST http://localhost:4000/api/posts
@@ -31,7 +48,8 @@ content-type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
 
 {
-    "content": "new content"
+    "content": "new content",
+    
 }
 
 ### get posts
@@ -90,3 +108,5 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliO
     "parentCommentId": "62a5e6b6198ec939c0791100",
     "commentId": "62a5ea0e22e47f020e06d61f"
 }
+
+###

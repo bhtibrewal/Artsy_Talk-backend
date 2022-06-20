@@ -1,9 +1,24 @@
 const Post = require("../models/post.model");
 const Comment = require("../models/comment.model");
 
+exports.getAllComments = async (req, res) => {
+    try {
+        const comments = await Comment.find().sort({ createdAt: -1 });
+        if (!comments)
+            return res
+                .status(404)
+                .send({ success: false, message: "No comments found" });
+
+        res.status(200).send({ success: true, comments });
+    } catch (error) {
+        res.status(500).send({ success: false, message: error.message });
+    }
+}
+
 exports.postComment = async (req, res) => {
     const { postId, parentId, body } = req.body;
     try {
+
         if (parentId) {
             const comment = await Comment.findById({ _id: parentId });
             const reply = await Comment.create({
@@ -40,7 +55,7 @@ exports.deleteComment = async (req, res) => {
     try {
         if (parentCommentId) {
             const comment = await Comment.findById({ _id: parentCommentId });
-            
+
             console.log(comment)
             comment.replies.filter(id => id.valueOf() !== commentId);
             await Comment.findByIdAndUpdate({ _id: postId }, comment)
@@ -49,7 +64,7 @@ exports.deleteComment = async (req, res) => {
         }
         else {
             const post = await Post.findById({ _id: postId });
-            
+
             console.log(post.comments)
             post.comments.filter(id => id.valueOf() === commentId);
             await Post.findByIdAndUpdate({ _id: postId }, post)

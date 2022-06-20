@@ -38,6 +38,16 @@ const userSchema = Schema({
         type: String,
         trim: true
     },
+    website: {
+        type: String,
+        trim: true
+    },
+    bookmarks: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
+    ],
     followers: [Schema.Types.ObjectId],
     followings: [Schema.Types.ObjectId],
     createdAt: {
@@ -54,6 +64,7 @@ userSchema.methods = {
         return password === this.password;
     }
 }
+
 const token = crypto.randomBytes(64).toString('hex');
 
 

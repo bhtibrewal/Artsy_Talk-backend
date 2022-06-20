@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose');
 const Post = require('../models/post.model');
 
 exports.likePost = async (req, res) => {
@@ -17,7 +18,8 @@ exports.likePost = async (req, res) => {
         await Post
             .findByIdAndUpdate({ _id: postId }, post, { new: true })
 
-        res.status(201).send({ success: true, post });
+        const posts = await Post.find();
+        res.status(201).send({ success: true, posts });
     }
     catch (error) {
         res.status(500).send({ success: false, message: error.message });
@@ -36,7 +38,21 @@ exports.dislikePost = async (req, res) => {
         if (!isLiked)
             return res.status(400).send({ sucess: false, error: "The Post is Already liked" })
 
-        
+        await Post.findOneAndUpdate({
+            _id: postId,
+            likes: {
+                $in: [mongoose.Types.ObjectId(req.userId)]
+            }
+        }, {
+            $pull: {
+                likes: {
+                    $in: [mongoose.Types.ObjectId(req.userId)]
+                }
+            }
+        })
+        const posts = await Post.find();
+        res.status(201).send({ success: true, posts });
+
 
     }
     catch {

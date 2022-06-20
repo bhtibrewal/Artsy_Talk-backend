@@ -51,7 +51,7 @@ exports.getPost = async (req, res) => {
 * POST request at /posts
 */
 exports.createPosts = async (req, res) => {
-    const { title, content, } = req.body;
+    const { postData: { title, content, } } = req.body;
     if (!content)
         return res
             .status(400)
@@ -62,9 +62,9 @@ exports.createPosts = async (req, res) => {
             user: req.userId,
             content,
         });
+        const posts = await Post.find();
 
-
-        res.status(201).send({ success: true, post });
+        res.status(201).send({ success: true, posts });
     }
     catch (error) {
         res.status(500).send({ success: false, message: error.message });
@@ -78,7 +78,7 @@ exports.createPosts = async (req, res) => {
 exports.editPost = async (req, res) => {
 
     const { postId } = req.params;
-    const { title, content, } = req.body;
+    const { postData: { title, content, } } = req.body;
     if (!content)
         return res
             .status(400)
@@ -91,7 +91,9 @@ exports.editPost = async (req, res) => {
         const post = await Post
             .findByIdAndUpdate({ _id: postId }, postObj, { new: true })
             .populate("user", "name photo location");
-        res.status(201).send({ success: true, post });
+        const posts = await Post.find();
+
+        res.status(201).send({ success: true, posts });
     }
     catch (error) {
         res.status(500).send({ success: false, message: error.message });
