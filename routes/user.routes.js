@@ -15,6 +15,6 @@ router.route("/user/followers").get(authenticateToken, getFollowers)
 router.route("/user/following").get(authenticateToken, getFollowings)
 router.route("/search_users").get(searchUsers)
 
-
+ 
 module.exports = router;
 

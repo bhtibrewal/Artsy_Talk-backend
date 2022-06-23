@@ -1,7 +1,7 @@
 ### get users
 GET http://localhost:4000/api/users
 
-###
+### 
 POST http://localhost:4000/api/auth/signup
 content-type: application/json
 
@@ -54,7 +54,10 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliO
 
 ### get posts
 GET http://localhost:4000/api/posts
-# authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NzEyMjIsImV4cCI6MTY1NTU3NjAyMn0.JRugDcYe4yHAyQwpqKGXnf1lfgJUTa-WLKx8UD7BBVw
+
+###
+GET http://localhost:4000/api/comments
+authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NzEyMjIsImV4cCI6MTY1NTU3NjAyMn0.JRugDcYe4yHAyQwpqKGXnf1lfgJUTa-WLKx8UD7BBVw
 
 ### delete post
 DELETE http://localhost:4000/api/posts/629cb4fb94470f9941ff5f5c
@@ -65,19 +68,19 @@ GET http://localhost:4000/api/posts/629cb51694470f9941ff5f5e
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
 
 ### edit post
-PUT  http://localhost:4000/api/posts/62a4f01c224e9fb940ad8901
+PUT  http://localhost:4000/api/posts/62af090430baa7a276e05ac2
 content-type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
 
 {
-    "content": "updated content"
+    "image": "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435"
 }
 
 ### like post
 POST  http://localhost:4000/api/posts/likes/62a4f01c224e9fb940ad8901
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
 
-###
+### add comment
 POST  http://localhost:4000/api/comments
 content-type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
@@ -110,3 +113,4 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliO
 }
 
 ###
+POST http://localhost:4000/api/post/bookmark

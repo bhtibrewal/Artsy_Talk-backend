@@ -1,13 +1,32 @@
 const { Schema, model } = require('mongoose');
 
 const postSchema = Schema({
-    title: { type: String, maxLength: 100 },
     content: { type: String, required: 'content is required', maxLength: 600 },
     image: String,
     comments: [
         {
-            type: Schema.Types.ObjectId,
-            ref: "Comment",
+            body: {
+                type: String,
+                required: [true, "Write something"],
+            },
+            user: {
+                type: Schema.Types.ObjectId,
+                ref: "User",
+                required: [true, "User id is require for adding like"],
+            },
+            replies: [
+                {
+                    body: {
+                        type: String,
+                        required: [true, "Write something"],
+                    },
+                    user: {
+                        type: Schema.Types.ObjectId,
+                        ref: "User",
+                        required: [true, "User id is require for adding like"],
+                    }
+                }
+            ]
         },
     ],
     likes: [

@@ -78,15 +78,16 @@ exports.createPosts = async (req, res) => {
 exports.editPost = async (req, res) => {
 
     const { postId } = req.params;
-    const { postData: { title, content, } } = req.body;
-    if (!content)
-        return res
-            .status(400)
-            .send({ success: false, message: "Please write something" });
+    const { title, content, image}  = req.body;
+    // if (!content)
+    //     return res
+    //         .status(400)
+    //         .send({ success: false, message: "Please write something" });
     try {
-
         const postObj = {
-            content
+            title,
+            content,
+            image
         };
         const post = await Post
             .findByIdAndUpdate({ _id: postId }, postObj, { new: true })

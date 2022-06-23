@@ -9,7 +9,6 @@ const { connectToMongoDB } = require('./config/database.config');
 connectToMongoDB()
 dotenv.config();
 
-
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
@@ -17,20 +16,21 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsConFig));
 
 
-
 const authRouter = require('./routes/auth.routes');
 const postsRouter = require('./routes/posts.routes');
 const userRouter = require('./routes/user.routes');
 const commentsRouter = require('./routes/comments.routes');
 const likeRouter = require('./routes/likes.routes')
+const bookmarkRouter = require("./routes/bookmark.routes");
 
 app.use('/api', authRouter);
 app.use('/api', userRouter);
 app.use('/api', postsRouter);
 app.use('/api', likeRouter);
 app.use('/api', commentsRouter);
+app.use('/api', bookmarkRouter);
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log('server running at '+PORT));
+app.listen(PORT, () => console.log('server running at ' + PORT));
 
 module.exports = app;

@@ -33,18 +33,18 @@ exports.postComment = async (req, res) => {
         }
         else {
             const post = await Post.findById({ _id: postId });
-            const comment = await Comment.create({
+            const comment = {
                 body,
                 user: req.userId,
-            })
-            console.log(comment, post.comments)
+                replies: []
+            } 
+            console.log(comment, post.comments);
             post.comments.push(comment);
             await Post.findByIdAndUpdate({ _id: postId }, post)
 
             res.status(201).send({ success: true, post });
         }
-
-    }
+    } 
     catch (error) {
         return res.status(500).send({ success: false, message: error.message });
     }

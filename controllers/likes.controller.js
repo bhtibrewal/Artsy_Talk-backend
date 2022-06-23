@@ -36,7 +36,7 @@ exports.dislikePost = async (req, res) => {
 
         const isLiked = post.likes.some(userId => userId.valueOf() === req.userId);
         if (!isLiked)
-            return res.status(400).send({ sucess: false, error: "The Post is Already liked" })
+            return res.status(400).send({ sucess: false, error: "The Post is not liked" })
 
         await Post.findOneAndUpdate({
             _id: postId,
@@ -53,9 +53,8 @@ exports.dislikePost = async (req, res) => {
         const posts = await Post.find();
         res.status(201).send({ success: true, posts });
 
-
     }
-    catch {
-
+    catch (error) {
+        res.status(500).send({ success: false, message: error.message });
     }
 }
