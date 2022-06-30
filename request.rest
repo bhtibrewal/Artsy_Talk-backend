@@ -55,6 +55,14 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliO
 ### get posts
 GET http://localhost:4000/api/posts
 
+### like post
+POST  http://localhost:4000/api/posts/likes/62af1861c9813ba82c474fad
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
+
+### dislike post
+DELETE  http://localhost:4000/api/posts/likes/62af1861c9813ba82c474fad
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
+
 ###
 GET http://localhost:4000/api/comments
 authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NzEyMjIsImV4cCI6MTY1NTU3NjAyMn0.JRugDcYe4yHAyQwpqKGXnf1lfgJUTa-WLKx8UD7BBVw
@@ -76,9 +84,6 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliO
     "image": "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435"
 }
 
-### like post
-POST  http://localhost:4000/api/posts/likes/62a4f01c224e9fb940ad8901
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjliOTU4MjEwODU3YTczODFiY2EwM2EiLCJpYXQiOjE2NTQ5NTQxMzMsImV4cCI6MTY1NTU1ODkzM30.7AM_VzSn-ufMOngzHreqVeJ1wwTlEZwYOs9AweGiPfI
 
 ### add comment
 POST  http://localhost:4000/api/comments

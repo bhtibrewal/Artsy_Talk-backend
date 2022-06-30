@@ -4,7 +4,7 @@ const authenticateToken = require('../middleware/authenticateToken');
 
 const router = express.Router();
 
-router.route('/bookmark/:postId')
+router.route('/users/bookmark/:postId')
     .post(authenticateToken, bookmarkPost)
     .delete(authenticateToken, unbookmarkPost);
 

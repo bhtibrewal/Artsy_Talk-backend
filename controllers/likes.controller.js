@@ -46,7 +46,7 @@ exports.dislikePost = async (req, res) => {
         }, {
             $pull: {
                 likes: {
-                    $in: [mongoose.Types.ObjectId(req.userId)]
+                    $in: req.userId,
                 }
             }
         })
